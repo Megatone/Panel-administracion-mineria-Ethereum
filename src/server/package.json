@@ -1,20 +1,21 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Server App Panel Administración Mineria Ethereum",
+  "description": "Server App Panel Administracion Mineria Ethereum",
   "main": "server.js",
-  "scripts": {
-    "test": "node server.js",
-    "start": "node server.js"
-  },
-  "author": "Megatone",
-  "license": "ISC",
   "dependencies": {
+    "angularjs": "^0.0.1",
     "express": "^4.15.4",
-    "mysql": "github:mysqljs/mysql",
+    "mysql": "^2.14.1",
     "socket.io": "^2.0.3"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
-  }
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "Megatone",
+  "license": "ISC"
 }
