@@ -12,7 +12,9 @@
   "dependencies": {
     "express": "^4.15.4",
     "mysql": "github:mysqljs/mysql",
-    "nodemon": "^1.11.0",
     "socket.io": "^2.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
