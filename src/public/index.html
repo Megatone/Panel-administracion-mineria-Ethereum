@@ -1,0 +1,20 @@
+<html>
+
+<head>
+    <title>Panel Administración Mineria Etherium</title>
+</head>
+
+<body ng-app="app">
+    <div class="container" ng-controller="controller">
+        <label><b>Nombre</b></label>
+        <input type="text" id="userLogin" placeholder="Nombre" name="userLogin" required>
+        <label><b>Password</b></label>
+        <input type="password" id="userPassword" placeholder="Contraseña" name="password" required>
+        <button type="button" ng-click="login()">Iniciar Sesión</button>
+    </div>
+
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script src="/js/app.js"></script>
+</html>
