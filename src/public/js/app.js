@@ -1,22 +1,57 @@
-var app = angular.module("app", []);
-
-
-app.controller("controller", function ($scope) {
-
-    var socket = io.connect('http://localhost:8000', { 'forceNew': true });
-
-    socket.on('loginResponse', function (res) {
-        console.log(res);
-        if (res.message == "success") {
-            console.log("OLEEE TU WEBA")
-        } else {
-            console.log("FAIL");
+var app = angular.module("app", ['ngRoute' , 'Session' ])
+    .config(['$routeProvider', function ($routeProvider) {
+        for (var path in window.routes) {
+            $routeProvider.when(path, window.routes[path]);
         }
+        $routeProvider.otherwise({ redirectTo: '/dashboard' });
+    }])
+    .run(function ($rootScope, $location , SessionService ) {        
+        $rootScope.$on("$locationChangeStart", function (event, next, current ) {
+            for (var i in window.routes) {
+                if (next.indexOf(i) != -1) {
+                    if (window.routes[i].requireLogin  && !SessionService.getUsuarioAutenticado() ) {                       
+                        $location.path("/login");
+                        event.preventDefault();
+                    }
+                }
+            }
+        });
     });
 
-    $scope.login = function() {
-        var userLogin = document.getElementById("userLogin").value;
-        var userPassword = document.getElementById("userPassword").value;
-        socket.emit('login', { "nombre": userLogin, "password": userPassword });
+window.routes = {
+    "/login": {
+        templateUrl: "views/login.html",
+        controller: "loginController",
+        requireLogin: false
+    },
+    "/dashboard": {
+        templateUrl: "views/dashboard.html",
+        controller: "dashboardController",
+        requireLogin: true
     }
+};
+
+app.factory('Notifi', function () {
+    return {
+        notificar: function (notificacion) {
+            $.notify({
+                title: notificacion.title,
+                message: notificacion.message
+            }, {
+                type: notificacion.type,
+                placement: {
+                    from: "bottom",
+                    align: "right" 
+                }, 
+                showProgressbar: true,
+                allow_dismiss: true,
+                delay: 5000,
+                offset: 1,
+                timer: 100
+            });
+        }
+    };
 });
+
+var socket = io.connect('http://localhost:8000', { 'forceNew': true });
+

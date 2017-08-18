@@ -2,19 +2,33 @@
 
 <head>
     <title>Panel Administración Mineria Etherium</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" media="screen" href="css/particles.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <link href="/css/login.css" rel="stylesheet">
 </head>
 
 <body ng-app="app">
-    <div class="container" ng-controller="controller">
-        <label><b>Nombre</b></label>
-        <input type="text" id="userLogin" placeholder="Nombre" name="userLogin" required>
-        <label><b>Password</b></label>
-        <input type="password" id="userPassword" placeholder="Contraseña" name="password" required>
-        <button type="button" ng-click="login()">Iniciar Sesión</button>
-    </div>
-
+    <ng-view onload="" $autoscroll=""></ng-view>
+    <div id="particles-js"></div>
+   
 </body>
+
+<script src="/js/librerias/particles.min.js"></script>
+<script src="/js/particles.js"></script>
+
 <script src="/socket.io/socket.io.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script src="/js/librerias/jquery.min.js"></script>
+<script src="/js/librerias/angular.js"></script>
+<script src="/js/librerias/angular-animate.js"></script>
+<script src="/js/librerias/angular-route.min.js"></script>
+<script src="/js/librerias/bootstrap-notify.js"></script>
+<script src="/js/librerias/md5.js"></script>
+
 <script src="/js/app.js"></script>
+<script src="/js/services/sessionService.js"></script>
+<script src="/js/controllers/loginController.js"></script>
+<script src="/js/controllers/dashboardController.js"></script>
+
 </html>
