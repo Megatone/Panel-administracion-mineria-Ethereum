@@ -28,6 +28,11 @@ window.routes = {
         templateUrl: "views/dashboard.html",
         controller: "dashboardController",
         requireLogin: true
+    },
+    "/configuracion": {
+        templateUrl: "views/configuracion.html",
+        controller: "configuracionController",
+        requireLogin: true
     }
 };
 
@@ -53,5 +58,4 @@ app.factory('Notifi', function () {
     };
 });
 
-var socket = io.connect('http://localhost:8000', { 'forceNew': true });
-
+var socket = io.connect('http://192.168.1.179:8000', { 'forceNew': true });

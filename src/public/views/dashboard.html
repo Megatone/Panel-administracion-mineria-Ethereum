@@ -1,3 +1,57 @@
-id-> {{Usuario.id}}<br>
-nombre-> {{Usuario.nombre}}
-<input type="button" ng-click="getMineros()">
+<h4 class="page-title">DASHBOARD</h4>
+<div class="block-area">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="tile">
+                <h2 class="tile-title">Dirección Ethereum</h2>
+                <table class="full-width">
+                    <tr>
+                        <td class="full-width">
+                            <input type="text" class="form-control" id="addressAccount" ng-value="information.data.account" disabled>
+                        </td>
+                        <td>
+                            <button class="btn full-width" ng-click="copyAddress()">Copiar Dirección</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>      
+        <div class="col-md-3">
+            <div class="tile">
+                <h2 class="tile-title">Total Hashrate Calculado</h2>
+                <center><span class="dash-data">{{information.data.hashrate}} Mh/s</span></center>
+            </div>
+        </div>       
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <h2 class="tile-title">Mineros Activos</h2>
+                <div class="table-responsive overflow" tabindex="5003" style="overflow: hidden; outline: none;">
+                    <table class="table table-bordered table-hover tile" style="margin-bottom:0">
+                        <thead>
+                            <tr>
+                                <th>Nº</th>
+                                <th>ID MINERO</th>
+                                <th>NOMBRE</th>
+                                <th>DIRECCIÓN IP</th>                               
+                                <th>Nº GPUs</th>
+                                <th>Inicio Minado</th>
+                                <th>Ultimo Reporte</th>
+                                <th>HASHRATE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="bot in information.data.workers | orderBy : '-rating'" ng-if="bot.rating > 0">
+                                <td>{{$index + 1}}</td>
+                                <td>{{bot.id}}</td>
+                                <td>{{bot.hashrate}} Mh/s </td>
+                                <td>{{bot.rating}}</td>
+                            </tr>                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

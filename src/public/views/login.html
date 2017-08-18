@@ -1,11 +1,11 @@
-<div class="login-panel">
+<div class="panel login-panel">
     <div class="card card-container">
         <img id="profile-img" class="profile-img-card" src="/images/eth-profile-login.jpg" />
         <p id="profile-name" class="profile-name-card"></p>
         <form class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
-            <input type="text" id="inputNombre" class="form-control" placeholder="Nombre" ng-model="inputsLogin.nombre" required autofocus>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="inputsLogin.password" required>
+            <input type="text" id="inputNombre" class="form-control" placeholder="Nombre" ng-model="inputsLogin.nombre" my-enter="login()" required autofocus>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="inputsLogin.password" my-enter="login()" required>
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="button" ng-click="login()">Iniciar Sesión</button>
         </form>
     </div>

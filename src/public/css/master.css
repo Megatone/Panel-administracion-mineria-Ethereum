@@ -1,0 +1,12 @@
+body {
+    background-image: url(../images/eth-background.jpg) !important;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+body > section#main {
+    display: block;
+    position: absolute;
+    width: 100%;
+}

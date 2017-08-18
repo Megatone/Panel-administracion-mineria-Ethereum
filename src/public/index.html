@@ -7,26 +7,91 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/animate.min.css" rel="stylesheet">
     <link href="/css/login.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/form.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/icons.css" rel="stylesheet">
+    <link href="/css/generics.css" rel="stylesheet">
+    <link href="/css/master.css" rel="stylesheet">
 </head>
 
 <body ng-app="app">
-    <ng-view onload="" $autoscroll=""></ng-view>
+
+    <header id="header" class="media">
+        <a href="" id="menu-toggle"></a>
+        <a class="logo pull-left" href="#">PANEL ETHEREUM V1.0</a>
+        <div class="media-body">
+        </div>
+    </header>
+
+    <section id="main" class="p-relative" role="main">
+       
+        <aside id="sidebar">
+          
+            <ul class="list-unstyled side-menu">
+                <li class="active">
+                    <a class="sa-side-home" href="#!/dashboard">
+                            <span class="menu-item">Dashboard</span>
+                        </a>
+                </li>
+                <li>
+                    <a href="#!/mineros">
+                            <span class="icon">&#61887;</span>
+                            <span class="menu-item">Administrar Mineros</span>
+                        </a>
+                </li>
+                <li>
+                    <a href="#!/estadisticas">
+                            <span class="icon">&#61932;</span>
+                            <span class="menu-item">Estadisticas</span>
+                        </a>
+                </li>             
+              
+                <li>
+                    <a href="#!/configuracion">
+                            <span class="icon">&#61886;</span>
+                            <span class="menu-item">Configuración</span>
+                        </a>
+                </li>
+                <li>
+                    <a href="#" ng-click="logout()">
+                            <span class="icon" style="margin-left: 2px;">&#61756;</span>
+                            <span class="menu-item">Cerrar Session</span>
+                        </a>
+                </li>
+
+            </ul>
+        </aside>
+
+        <!-- Content -->
+        <section id="content" class="container">
+            <ng-view onload="" $autoscroll=""></ng-view>
+        </section>
+
+    </section>
+
+
+
     <div id="particles-js"></div>
-   
+
 </body>
 
 <script src="/js/librerias/particles.min.js"></script>
 <script src="/js/particles.js"></script>
 
+
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/librerias/jquery.min.js"></script>
+<script src="/js/librerias/jquery-ui.min.js"></script>
 <script src="/js/librerias/angular.js"></script>
 <script src="/js/librerias/angular-animate.js"></script>
 <script src="/js/librerias/angular-route.min.js"></script>
 <script src="/js/librerias/bootstrap-notify.js"></script>
 <script src="/js/librerias/md5.js"></script>
+<script src="/js/funciones.js"></script>
 
 <script src="/js/app.js"></script>
+<script src="/js/directives/directives.js"></script>
 <script src="/js/services/sessionService.js"></script>
 <script src="/js/controllers/loginController.js"></script>
 <script src="/js/controllers/dashboardController.js"></script>

@@ -1,0 +1,67 @@
+<h4 class="page-title">Configuración</h4>
+<div class="block-area">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="tile">
+                <h2 class="tile-title">Ethereum Adress Wallet</h2>
+                <input type="text" class="form-control " ng-model="configuration.account" placeholder="Address Wallet 0x................................................................">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="tile">
+                <h2 class="tile-title">API Url</h2>
+                <input type="text" class="form-control " ng-model="configuration.apiUrl" placeholder="API Url">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="tile">
+                <h2 class="tile-title">Pool Server 1</h2>
+                <input type="text" class="form-control " ng-model="configuration.poolServer1" placeholder="Url Server 1">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="tile">
+                <h2 class="tile-title">Port Pool Server 1</h2>
+                <input type="text" class="form-control " ng-model="configuration.portPoolServer1" placeholder="Port Server 1">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="tile">
+                <h2 class="tile-title">Pool Server 2</h2>
+                <input type="text" class="form-control " ng-model="configuration.poolServer2" placeholder="Url Server 2">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="tile">
+                <h2 class="tile-title">Port Pool Server 2</h2>
+                <input type="text" class="form-control " ng-model="configuration.portPoolServer2" placeholder="Port Server 2">
+            </div>
+        </div>
+    </div>
+    <div class="row" id="check">    
+        <div class="col-md-2">
+            <div class="tile">
+                <h2 class="tile-title">Mining Status</h2>   
+                 <div class="checkbox m-l-5 p-b-5">
+                    <label class="hover">
+                        <div class="icheckbox_minimal" aria-checked="{{miningStatus}}" ng-class="miningStatus ? 'checked' : ''" aria-disabled="false" style="position: relative;">
+                            <input type="checkbox" ng-model="miningStatus" ng-change="changeMiningStatus()">
+                            <ins class="iCheck-helper"></ins>                         
+                        </div>
+                        Mining Active Satatus
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="tile">
+                <h2 class="tile-title">Timeout Report Process (ms)</h2>
+                <input type="text" class="form-control " ng-model="configuration.timeout" placeholder="Timeout 5000">
+            </div>
+        </div>
+    </div>
+
+    <button class="btn f-r" ng-click="saveConfig()">Save Config</button>
+</div>
