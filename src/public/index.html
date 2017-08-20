@@ -4,7 +4,7 @@
     <title>Panel Administración Mineria Etherium</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" media="screen" href="css/particles.css">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">    
     <link href="/css/animate.min.css" rel="stylesheet">
     <link href="/css/login.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
@@ -13,11 +13,13 @@
     <link href="/css/icons.css" rel="stylesheet">
     <link href="/css/generics.css" rel="stylesheet">
     <link href="/css/master.css" rel="stylesheet">
+
+
 </head>
 
 <body ng-app="app">
 
-    <header id="header" class="media">
+    <header id="header" class="media" ng-controller="menuController" ng-if="estaAutenticado">
         <a href="" id="menu-toggle"></a>
         <a class="logo pull-left" href="#">PANEL ETHEREUM V1.0</a>
         <div class="media-body">
@@ -25,9 +27,9 @@
     </header>
 
     <section id="main" class="p-relative" role="main">
-       
-        <aside id="sidebar">
-          
+
+        <aside id="sidebar" ng-controller="menuController" ng-if="estaAutenticado">
+
             <ul class="list-unstyled side-menu">
                 <li class="active">
                     <a class="sa-side-home" href="#!/dashboard">
@@ -45,8 +47,8 @@
                             <span class="icon">&#61932;</span>
                             <span class="menu-item">Estadisticas</span>
                         </a>
-                </li>             
-              
+                </li>
+
                 <li>
                     <a href="#!/configuracion">
                             <span class="icon">&#61886;</span>
@@ -54,7 +56,7 @@
                         </a>
                 </li>
                 <li>
-                    <a href="#" ng-click="logout()">
+                    <a href="#" ng-click="cerrarSesion()">
                             <span class="icon" style="margin-left: 2px;">&#61756;</span>
                             <span class="menu-item">Cerrar Session</span>
                         </a>
@@ -86,17 +88,26 @@
 <script src="/js/librerias/angular.js"></script>
 <script src="/js/librerias/angular-animate.js"></script>
 <script src="/js/librerias/angular-route.min.js"></script>
+   
+    
+    
+   
+
 <script src="/js/librerias/bootstrap-notify.js"></script>
 <script src="/js/librerias/md5.js"></script>
 <script src="/js/funciones.js"></script>
 <script src="/js/Chart.bundle.js"></script>
+<script src="/js/librerias/angular-modal-service.js"></script>
 
 <script src="/js/app.js"></script>
 <script src="/js/directives/directives.js"></script>
 <script src="/js/services/sessionService.js"></script>
+<script src="/js/controllers/menuController.js"></script>
 <script src="/js/controllers/loginController.js"></script>
 <script src="/js/controllers/dashboardController.js"></script>
 <script src="/js/controllers/configuracionController.js"></script>
 <script src="/js/controllers/estadisticasController.js"></script>
+<script src="/js/controllers/minerosController.js"></script>
+<script src="/js/controllers/modales/modalActualizarConfiguracionController.js"></script>
 
 </html>

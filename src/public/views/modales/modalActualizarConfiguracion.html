@@ -1,0 +1,19 @@
+<div class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">GUARDAR CONFIGURACIÓN</h4>
+            </div>
+            <div class="modal-body">
+                <p>¿Deseas que los mineros obtengan la ultima actualización de la configuración guardada?</p>
+                <p>Si aceptas , los mineros obtendran la ultima configuración y reiniciaran el proceso de minado aplicando la configuración obtenida.</p>
+                <p>Si Cancelas , los mineros obtendran seguiran con el proceso de minado con la configuración anterior , y la proxima vez que inicien el proceso de minado obtendran la ultima configuracion guardada.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="close(true)" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                <button type="button" ng-click="close(false)" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

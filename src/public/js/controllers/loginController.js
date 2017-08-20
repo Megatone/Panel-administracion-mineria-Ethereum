@@ -1,17 +1,23 @@
-app.controller("loginController", function ($scope , SessionService , Notifi) {
-    
-    $scope.inputsLogin = {
-        nombre : 'admin',
-        password : 'admin'
-    };   
+app.controller("loginController", function ($scope, SessionService, Notifi) {
 
-    socket.on('loginResponse', function (res) {         
+    $scope.inputsLogin = {
+        nombre: 'admin',
+        password: 'admin'
+    };
+
+    inicializar();
+
+    function inicializar() {
+        socket.removeListener("loginResponse");
+    };
+
+    socket.on('loginResponse', function (res) {
         if (res.message == "success") {
             SessionService.setToken(res.token);
             SessionService.setUsuario(res.usuario);
-            SessionService.setUsuarioAutenticado(true);            
+            SessionService.setUsuarioAutenticado(true);
             var incidencia = { type: 'success', title: 'Inicio de Sesión : ', message: 'Bienbenido ' };
-            Notifi.notificar(incidencia);                
+            Notifi.notificar(incidencia);
         } else {
             SessionService.resetToken();
             SessionService.resetUsuario();
@@ -20,10 +26,9 @@ app.controller("loginController", function ($scope , SessionService , Notifi) {
             Notifi.notificar(incidencia);
         }
     });
-  
-    $scope.login = function() {   
-        var hash = CryptoJS.MD5($scope.inputsLogin.password).toString();      
+
+    $scope.login = function () {
+        var hash = CryptoJS.MD5($scope.inputsLogin.password).toString();
         socket.emit('login', { "nombre": $scope.inputsLogin.nombre, "password": hash });
     };
 });
-  

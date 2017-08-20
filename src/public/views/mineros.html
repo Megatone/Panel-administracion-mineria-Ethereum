@@ -1,0 +1,38 @@
+<h4 class="page-title">MINEROS</h4>
+<div class="block-area">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <h2 class="tile-title">Active Bots</h2>
+                <div class="table-responsive overflow" tabindex="5003" style="overflow: hidden; outline: none;">
+                    <table class="table table-bordered table-hover tile" style="margin-bottom:0">
+                        <thead>
+                            <tr>
+                                <th>Nº</th>
+                                <th>ID MINERO</th>
+                                <th>NOMBRE</th>
+                                <th>DIRECCIÓN IP</th>
+                                <th>Nº GPUs</th>
+                                <th>Inicio Minado</th>
+                                <th>Ultimo Reporte</th>
+                                <th>HASHRATE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="minero in information.data.mineros">
+                                <td>{{$index + 1}}</td>
+                                <td>{{minero.id}}</td>
+                                <td>{{minero.nombre}}</td>
+                                <td>{{minero.direccionIP}}</td>
+                                <td>{{minero.gpus}}</td>
+                                <td>{{minero.FDESDE}}</td>
+                                <td>{{minero.FULTMOD}}</td>
+                                <td>{{minero.hashrate}} Mh/s </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

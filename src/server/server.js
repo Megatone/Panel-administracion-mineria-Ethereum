@@ -8,7 +8,7 @@ var port = 8000;
 var privateKey = "CLaveUltraSecretaDeServidor";
 var md5 = require('md5');
 
-var room = "mina";
+var mina = "mina";
 var panel = "panel";
 
 app.use(express.static('public'));
@@ -50,17 +50,22 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('guardarConfiguracion', function (data) {
         if (validarUsuarioPanel(socket.id)) {
-            var clean_account = sanitizer.sanitize(data.account);
-            var clean_poolServer1 = sanitizer.sanitize(data.poolServer1);
-            var clean_portPoolServer1 = sanitizer.sanitize(data.portPoolServer1);
-            var clean_poolServer2 = sanitizer.sanitize(data.poolServer2);
-            var clean_portPoolServer2 = sanitizer.sanitize(data.portPoolServer2);
-            var clean_timeout = sanitizer.sanitize(data.timeout);
+            var clean_account = sanitizer.sanitize(data.configuracion.account);
+            var clean_poolServer1 = sanitizer.sanitize(data.configuracion.poolServer1);
+            var clean_portPoolServer1 = sanitizer.sanitize(data.configuracion.portPoolServer1);
+            var clean_poolServer2 = sanitizer.sanitize(data.configuracion.poolServer2);
+            var clean_portPoolServer2 = sanitizer.sanitize(data.configuracion.portPoolServer2);
+            var clean_timeout = sanitizer.sanitize(data.configuracion.timeout);
 
             var query = "UPDATE tblconfiguracion SET account = ? , poolServer1 = ? , portPoolServer1 = ? , poolServer2 = ? , portPoolServer2 = ? , timeout = ? LIMIT 1 ";
             var params = [clean_account ,clean_poolServer1 , clean_portPoolServer1 ,clean_poolServer2 , clean_portPoolServer2 , clean_timeout];
             db.query(query , params , function(error ){
                 if(error) throw error;
+                socket.emit("guardarConfiguracionResponse");
+                if(data.reinicioMineros){                        
+                    socket.emit("reinicioMinerosResponse");
+                    emitToMina("reinicioMineros", {});
+                }
             });
         }
     });
@@ -145,10 +150,6 @@ function emitMineroDesconecto(minero) {
 };
 
 function emitToPanel(evento, data) {
-/*    for (var i = 0; i <= socketsPanel.length - 1; i++) {
-        io.sockets.connected[socketsPanel[i]].emit(evento, data);
-    }
-    */
     io.sockets.in(panel).emit(evento, data);
 };
 
@@ -195,6 +196,16 @@ function validarUsuarioPanel(idSocket) {
 
 //funciones Minero
 
+
+function emitToMina(evento , data){
+   
+  /*  for(var i = 0; i<= socketsMineros.length-1;i++){
+        console.log(evento + " -> " + socketsMineros[i]);
+        io.sockets.connected[socketsMineros[i]].emit(evento , data);
+    }*/
+    io.sockets.in(mina).emit(evento, data);
+};
+
 function inicializarMinero(data, socket) {
     console.log("Inicializando  Minero -> " + data.nombre);
     var clean_token = sanitizer.sanitize(data.token);
@@ -211,7 +222,7 @@ function inicializarMinero(data, socket) {
             var params = [clean_nombre, clean_direccionIP, socket.id, clean_token,];
             db.query(query, params, function (error) {
                 socket.emit('ConfiguracionMinero', results[0]);
-                socket.join(room);
+                socket.join(mina);
                 socketsMineros.push(socket.id);
                 emitMineroConecto(results[0]);
                 emitirInformacionMina();

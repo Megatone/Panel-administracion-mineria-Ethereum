@@ -1140,7 +1140,7 @@ hr {
 
 /* Modal + Dialog + Dark UI */
 .modal {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(23, 22, 22, 0.63);
     overflow-y: auto;
 }
 
