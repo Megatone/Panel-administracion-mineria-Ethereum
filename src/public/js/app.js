@@ -33,6 +33,11 @@ window.routes = {
         templateUrl: "views/configuracion.html",
         controller: "configuracionController",
         requireLogin: true
+    },
+    "/estadisticas": {
+        templateUrl: "views/estadisticas.html",
+        controller: "estadisticasController",
+        requireLogin: true
     }
 };
 

@@ -14,11 +14,12 @@ app.controller("configuracionController" , function($scope ,  Notifi){
 
     function inicializar(){
        socket.emit("obtenerConfiguracion");
-       socket.on("obtenerConfiguracionResponse" , function(data){
-            $scope.configuration = data;
-       });
+      socket.removeListener("obtenerConfiguracionResponse");
     };
 
+    socket.on("obtenerConfiguracionResponse" , function(data){
+        $scope.configuration = data;
+    });
     $scope.guardarConfiguracion = function(){
         socket.emit("guardarConfiguracion", $scope.configuration);
         var incidencia = { type: 'success', title: 'Configuración : ', message: 'La configuración ha sido guardada con exito' };

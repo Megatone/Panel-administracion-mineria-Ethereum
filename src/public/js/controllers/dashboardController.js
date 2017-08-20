@@ -8,32 +8,33 @@ app.controller("dashboardController", function ($scope, SessionService, Notifi) 
             numMineros : 0
         }
     };   
-
     
-
     inicializar();
 
     function inicializar() {        
         $scope.Usuario = SessionService.getUsuario();      
-        socket.emit('informacionMina');
-        socket.on("informacionMina" , function(data){
-            $scope.information.data.mineros = data.mineros;
-            $scope.information.data.hashrate  = parseFloat(data.totalHashrate);
-            $scope.information.data.numMineros = data.numMineros;
-
-            $scope.$apply();
-        });
-        socket.on("mineroConecto" , function(data){
-            var incidencia = { type: 'success', title: 'Minero : ', message: 'El Minero ' + data.nombre +' se conecto a la Mina' };
-            Notifi.notificar(incidencia);  
-        });
-
-        socket.on("mineroDesconecto" , function(data){
-            var incidencia = { type: 'danger', title: 'Minero : ', message: 'El Minero ' + data.nombre +' se desconecto de la Mina' };
-            Notifi.notificar(incidencia);  
-        });
+        socket.emit('informacionMina');     
+        socket.removeListener('informacionMina');
+        socket.removeListener('mineroConecto');
+        socket.removeListener('mineroDesconecto');        
     };
 
+    socket.on("informacionMina" , function(data){
+        $scope.information.data.mineros = data.mineros;
+        $scope.information.data.hashrate  = parseFloat(data.totalHashrate);
+        $scope.information.data.numMineros = data.numMineros;
+
+        $scope.$apply();
+    });
+    socket.on("mineroConecto" , function(data){
+        var incidencia = { type: 'success', title: 'Minero : ', message: 'El Minero ' + data.nombre +' se conecto a la Mina' };
+        Notifi.notificar(incidencia);  
+    });
+
+    socket.on("mineroDesconecto" , function(data){
+        var incidencia = { type: 'danger', title: 'Minero : ', message: 'El Minero ' + data.nombre +' se desconecto de la Mina' };
+        Notifi.notificar(incidencia);  
+    });
 
     $scope.copyAddress = function(){   
         copyToClipboard($scope.information.data.account);  
