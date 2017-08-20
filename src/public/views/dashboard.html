@@ -15,13 +15,19 @@
                     </tr>
                 </table>
             </div>
-        </div>      
+        </div>
         <div class="col-md-3">
             <div class="tile">
                 <h2 class="tile-title">Total Hashrate Calculado</h2>
-                <center><span class="dash-data">{{information.data.hashrate}} Mh/s</span></center>
+                <center><span class="dash-data">{{information.data.hashrate | number : 2}} Mh/s</span></center>
             </div>
-        </div>       
+        </div>
+        <div class="col-md-3">
+            <div class="tile">
+                <h2 class="tile-title">Numero de Mineros Activos</h2>
+                <center><span class="dash-data">{{information.data.numMineros | number : 0}}</span></center>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -34,7 +40,7 @@
                                 <th>Nº</th>
                                 <th>ID MINERO</th>
                                 <th>NOMBRE</th>
-                                <th>DIRECCIÓN IP</th>                               
+                                <th>DIRECCIÓN IP</th>
                                 <th>Nº GPUs</th>
                                 <th>Inicio Minado</th>
                                 <th>Ultimo Reporte</th>
@@ -42,12 +48,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="bot in information.data.workers | orderBy : '-rating'" ng-if="bot.rating > 0">
+                            <tr ng-repeat="minero in information.data.mineros">
                                 <td>{{$index + 1}}</td>
-                                <td>{{bot.id}}</td>
-                                <td>{{bot.hashrate}} Mh/s </td>
-                                <td>{{bot.rating}}</td>
-                            </tr>                           
+                                <td>{{minero.id}}</td>
+                                <td>{{minero.nombre}}</td>
+                                <td>{{minero.direccionIP}}</td>
+                                <td>{{minero.gpus}}</td>
+                                <td>{{minero.FDESDE}}</td>
+                                <td>{{minero.FULTMOD}}</td>
+                                <td>{{minero.hashrate}} Mh/s </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
